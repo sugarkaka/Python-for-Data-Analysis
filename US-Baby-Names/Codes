@@ -1,0 +1,39 @@
+# import pandas and load name 1880
+import pandas as pd
+import numpy as np
+names1880 = pd.read_csv('yob1880.txt', names = ['name', 'sex', 'births'])
+names1880
+
+# use the sum of the births column by sex as the total number of births in 1880
+names1880.groupby('sex').births.sum()
+
+# use pandas.concat to assenble all of the data into a single dataframe
+years = range(1880, 2011)
+pieces = []
+columns = ['name', 'sex', 'births']
+for year in years:
+   path = 'yob%d.txt' % year
+   frame = pd.read_csv(path, names = columns)
+   
+   fram['year'] = year
+   pieces.append(frame)
+names = pd.concat(pieces. ignore_index = True)
+names
+
+# start aggregating the data at the year and sex level using groupby and pivot_table
+total_births = names.pivot_table('birth', index = 'year', columns = 'sex', aggfunc= sum)
+total_births.tail()
+total_births.plot(title = 'Total births by sex and year')
+
+# insert column prop with the fraction of babies
+def add_prop(group):
+    # Integer division floors
+    births = group.births.astype(float)
+    group['prop'] = births / births.sum()
+    return group
+names = names.groupby(['year', 'sex']).apply(add_prop)
+
+# use np.allclose to check that 
+boy
+    
+
