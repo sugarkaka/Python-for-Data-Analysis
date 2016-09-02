@@ -34,6 +34,6 @@ def add_prop(group):
 names = names.groupby(['year', 'sex']).apply(add_prop)
 
 # use np.allclose to check that 
-boy
+np.allclose(names.groupby('year', 'sex']).prop.sum(), 1)
     
 
