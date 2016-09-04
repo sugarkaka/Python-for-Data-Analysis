@@ -36,4 +36,13 @@ names = names.groupby(['year', 'sex']).apply(add_prop)
 # use np.allclose to check that 
 np.allclose(names.groupby('year', 'sex']).prop.sum(), 1)
     
+# analysis the top 1000 names for each sex and year combintination
+def top1000(group):
+    return group.sort_index(by = 'births', ascending = False)[:1000]
+    grouped = names.groupby(['year', 'sex'])
+    top1000 = grouped.apply(get_top1000)
 
+pieces = []
+for year, group in names.groupby(['year', 'sex']):
+    pieces.append(group.sort_index(by = 'births', assending = False)[:1000])
+top1000 = pd.concat(pieces, ignore_index = True)
