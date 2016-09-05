@@ -46,3 +46,23 @@ pieces = []
 for year, group in names.groupby(['year', 'sex']):
     pieces.append(group.sort_index(by = 'births', assending = False)[:1000])
 top1000 = pd.concat(pieces, ignore_index = True)
+
+# Spilt the top 1000 names into the boy and the girl portions
+boys = top1000[top1000.sex == 'M']
+girls = top1000[top1000.sex == 'F']
+
+# Form a pivot table of the total number of births by year and sex 
+total_births = top1000.pivot_table('births', index = 'year', columns = 'sex', aggfunc = sum)
+total_births
+
+# Plot for the handful of names 
+subset = total_births[['John', 'Harry', 'Mary', 'Marilyn']]
+subset.plot(subplots = True, figsize = (12, 10). grid = False, title = 'Number of births per year')
+
+# The proportion of births represented by the top 1000 most popular names 
+table = top1000.pivot_table('prop', index = 'year', columns = 'sex', aggfunc = sum)
+table.plot(title = 'Sum of the table1000/prop by year and sex', yticks = np.linspace(0,1.2, 13), xticks = range(1880, 2020, 10))
+
+df = boys[ boys.year == 2010]
+df
+
