@@ -66,3 +66,28 @@ table.plot(title = 'Sum of the table1000/prop by year and sex', yticks = np.lins
 df = boys[ boys.year == 2010]
 df
 
+# Return th position in the cumulative sum at which 0.5 would need to be inserted 
+prop_cumsum= df.sort_index(by = 'prop', ascending = False).prop.cumsum()
+prop_cumsum[:10]
+prop_cumsum.searchsorted(0.5)
+
+# Apply this operation to each year and sex combination
+def get_quantile_count(group, q = 0.5):
+    group = group.sort_index(by = 'prop', ascending = False)
+    return group.prop.cumsum().searchsorted(q) + 1
+diversity = top1000.groupby(['year', 'sex']).apply(get_quantile_count)
+diversity = diversity.unstack('sex')
+diversity.head()
+
+# Plot the diversity
+diversity.plot(title = 'Numberof popular names in top 50%)
+
+# Extract the last letter from the name colunmn
+get_last_letter = lambda x: x[-1]
+last_letters = names.name.map(get_last_letter)
+last_letters.name = 'last_letter'
+
+table = names.pivot_table('births', index = last_letters, column = ['year', 'sex'], aggfunc = sum)
+# Select the three representative years spanning the history and print the first few rows
+
+
