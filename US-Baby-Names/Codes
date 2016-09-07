@@ -88,6 +88,13 @@ last_letters = names.name.map(get_last_letter)
 last_letters.name = 'last_letter'
 
 table = names.pivot_table('births', index = last_letters, column = ['year', 'sex'], aggfunc = sum)
+
 # Select the three representative years spanning the history and print the first few rows
+subtable = table.reindex(columns = [1910, 1960, 2010], level = 'year')
+subtable.head()
+subtable.sum()
+letter_prop = subtable / subtable.sum().astype(float)
+
+# Make bar plots for each sex broken down by year
 
 
