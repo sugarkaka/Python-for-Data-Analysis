@@ -96,5 +96,33 @@ subtable.sum()
 letter_prop = subtable / subtable.sum().astype(float)
 
 # Make bar plots for each sex broken down by year
+import matplotlib.pyplot as plt
+fig, axes = plt.subplots(2, 1, figsize = (10, 8))
+letter_prop['M'].plpt(kind = 'bar', rot = 0, ax = axes[0],title = 'Male')
+letter_prop['F'].plot(kind = 'bar', rot = 0, ax = axes[1], title = 'Female', legend = False)
+
+# Transposing to make each column a time series:
+letterL_prop = table / table.sum().astype(float)
+dny_ts = letter_prop.ix[['d', 'n', 'y'], 'M'].T
+dny_ts.head()
+dny_ts.plot()
+
+# Compute a list of names occurring in the dataset starting with  lesl
+all_names = top1000.name.unique()
+mask = np.array(['lesl'in x.lower() for x in all_names])
+lesley_like = all_name[mask]
+lesley_like
+array([Leslie, Lesley, Leslee, Lesli, Lesly], dtype = object)
+
+# From here filter down to just those names and sum births grouped by name to see the relative frequencies
+filtered = top1000[top1000.name.isin(lesley_like)]
+filtered.gropby('name').births.sum()
+
+# Aggregate by sex and year and normalize within year
+
+table = filtered.pivot_table('births', index = 'year', columns = 'sex', aggfunc = 'sum')
+table = table.div(table.sum(1), axis = 0)
+table.tail()
+table.plot(style= {'M':'k-', 'F': 'k--'})
 
 
