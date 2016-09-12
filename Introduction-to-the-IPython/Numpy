@@ -1,0 +1,31 @@
+# 创建ndarray
+data1 = [6, 7.5, 8, 3]
+arr1 = np.array(data1)
+arr1
+
+data2 = [[1, 2, 3, 4], [5, 6, 7, 8]]
+arr2 = np.array(data2)
+arr2
+
+arr2.shape 
+out：(2, 4)
+arr2.ndim 
+out: 2
+
+arr1.dtype 
+
+# 创建指定长度全为0或1的数组
+np.zeros(10)
+np.zeros(2)
+np.ones(2)
+
+# 创建一个正方的NN矩阵
+np.eye(2)
+
+# arange 函数是内置函数range的数组版
+np.arange(6)
+out: array([0, 1, 2, 3, 4, 5])
+
+# 可以在创建时制定数据类型
+arr1 = np.array([1, 2, 3], dtype = np.float64)
+arr2 = np.array([1, 2, 3], dtype = np.int32)
