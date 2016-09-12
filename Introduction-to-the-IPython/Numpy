@@ -26,6 +26,14 @@ np.eye(2)
 np.arange(6)
 out: array([0, 1, 2, 3, 4, 5])
 
+# 可以通过astype方法转换dtype
+arr = np.array([1, 2, 3, 4])
+arr.dtype 
+out: dtype('int64')
+
+float_art = arr.astype(np.float64)
+
+
 # 可以在创建时制定数据类型
 arr1 = np.array([1, 2, 3], dtype = np.float64)
 arr2 = np.array([1, 2, 3], dtype = np.int32)
