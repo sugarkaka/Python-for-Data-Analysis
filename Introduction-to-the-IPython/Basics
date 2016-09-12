@@ -17,3 +17,18 @@ print data
 %bookmark db /home/wesm/Dropbox
 cd db
  
+# 利用reload函数加载修改过的代码
+import some_lib
+reload(some_lib)
+
+x = 5
+y = [1,2,3]
+
+# 让你的类更加的友好
+class message:
+    def __init__(self, msg):
+	    self.msg = msg
+	def __repr__(self):
+	    return 'Message : %s' % self.msg\
+x = message('I have a dream)
+print x
