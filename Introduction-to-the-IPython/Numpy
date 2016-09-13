@@ -37,3 +37,13 @@ float_art = arr.astype(np.float64)
 # 可以在创建时制定数据类型
 arr1 = np.array([1, 2, 3], dtype = np.float64)
 arr2 = np.array([1, 2, 3], dtype = np.int32)
+
+# 数组的dtype还有另外的用法如
+int_array = np.array(10)
+caliber = np.array([.22, .26, .357, .380, .44, .50], dtype = np.float64)
+
+int_array.astype(caliber.dtype)
+
+# 数组可以让你不用编写循环就可以对数据执行批量运算
+arr = np.array([1, 2, 3], [4, 5, 6])
+arr 
