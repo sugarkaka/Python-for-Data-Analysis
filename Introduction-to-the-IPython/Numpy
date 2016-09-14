@@ -46,4 +46,5 @@ int_array.astype(caliber.dtype)
 
 # 数组可以让你不用编写循环就可以对数据执行批量运算
 arr = np.array([1, 2, 3], [4, 5, 6])
-arr 
+arr
+d
