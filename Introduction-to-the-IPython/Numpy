@@ -49,4 +49,46 @@ arr = np.array([1, 2, 3], [4, 5, 6])
 arr * arr
 arr - arr
 arr / arr
-# suibianxiedian
+
+# 布尔型索引
+names = np.array(['bob', 'will', 'bob', 'joe', 'will', 'joe'])
+data = randn(7, 4)
+names
+data
+
+names = 'bob'
+data[names = 'bob']
+data[names = 'bob', 3]
+data[names = 'bob', 2:]
+
+# 也可以用& | 进行布尔运算
+mask = (names == 'bob') | (names = 'will')
+data[mask]
+
+# 将Data中所有负值设为0
+data[data < 0] = 0
+
+# 花式索引
+arr = np.empty((8, 4))
+for i in range(8):
+    arr[i] = i
+
+# 以特定的顺序选取子集
+arr[[4, 3, 0, 6]]
+
+arr = np.arange(32).reshape((8, 4))
+arr
+arr[np.ix_([1, 5, 7, 2], [0, 3, 1, 2])]
+
+# 数组的转置
+arr = np.arange(15).reshape((5, 3))
+arr.T
+np.dot(arr.T, arr)
+
+# 通用函数
+arr = anp.arange(10)
+np.sqrt(arr)
+
+x = randn(8)
+y = randn(8)
+np.maximum(x, y)
