@@ -132,3 +132,105 @@ for i in range(n):
 	    result.append(3)
 		
 result = 1 * (cond1 - cond2) + 2* (cond2 & - cond1) + 3 * -(cond1 | cond2)
+
+# 累计求和与累计乘积
+arr = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+arr.cumsum(0)
+arr.cumprod(1)
+
+# 计算正值的数量
+arr = randn(100)
+(arr > 0 ).sum()
+
+# 检查布尔值是否为True
+bools = np.array([False, False, True, False])
+bools.any()
+bools.all()
+
+# 利用sort进行排序
+arr = randn(8)
+arr
+arr.sort()
+
+# 以轴进行排序
+arr = randn(5, 3)
+arr
+arr.sort(1)
+
+# 查看5%的分位数
+large_arr = randn(1000)
+large_arr.sort()
+large_arr[int(0.05 * len(large_arr))]
+
+# 唯一化
+names = np.array(['bob', 'joe', 'will', 'bob', 'joe'])
+np.unique(names)
+
+ints = np.array([3, 3, 3, 2, 2, 1, 1 , 4, 4])
+np.unique(ints)
+
+# 利用np.in1d 测试数组值是否在另一个数组中
+values = np.array([6, 0, 0, 3, 2, 5, 6])
+np.in1d(values, [2, 3, 6])
+
+# 矩阵的乘法
+x = np.array([[1, 2, 3 ], [4, 5, 6]])
+y = np.array([[6, 23], [-1, 7], [8, 9]])
+x.dot(y)
+np.dot(x, np.ones(3))
+
+from numpy.linalg import inv, qr
+x = randn(5, 5)
+mat = x.T.dot(x)
+
+# 计算矩阵的逆
+inv(mat)
+mat.dot(inv(mat))
+
+# 计算矩阵的QR值
+q, r = qr(mat)
+r
+
+# 利用normal得到标准正态分布的数组
+samples = np.random.normal(size = (4, 4))
+samples
+
+# 随机漫步
+# random.randint(a, b) a <= n <= b
+# np.random.randint(a, b) a <= n < b
+import random
+import matplotlib.pyplot as plt
+position = 0
+walk = [position]
+steps = 1000
+for i in xrange(steps):
+	step = 1 if random.randint(0, 1) else -1
+	position += step
+	walk.append(position)
+print walk
+plt.plot(walk)
+
+nsteps = 1000
+draws = np.random.randint(0, 2, size=nsteps)
+steps = np.where(draws > 0, 1, -1)
+walk = steps.cumsum()
+walk.max()
+walk.min()
+
+np.abs(walk) >= 10
+
+# 模拟多个随机漫步过程
+nwalks = 5000
+nsteps = 1000
+draws = np.random.randint(0, 2, size = (nwalks, nsteps)
+steps = np.where(draws > 0, 1, -1)
+walks = steps.cumsum(1)
+
+hits30 = (np.abs(walks) >= 30).any(1)
+hits30.sum()
+
+crossing_times = (np.abs(walks[hits30]) >= 30).argmax(1)
+crossing_times.mean()
+
+steps = np.random.normal(loc= 0, scale = 0.25, size = (nwalks, nsteps))
+
