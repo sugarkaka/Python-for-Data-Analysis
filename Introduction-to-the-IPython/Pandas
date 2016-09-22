@@ -14,3 +14,39 @@ obj
 pd.isnull(obj)
 pd.notnull(obj)
 obj.isnull()
+
+data = {
+    'state': ['ohio', 'ohio', 'ohio', 'nevada', 'nevada'],
+	'year': [2000, 2001, 2002, 2001, 2002],
+	'pop': [1.5, 1.7, 3.6, 2.4, 2.9]
+	}
+frame = DataFrame(data)
+
+DataFrame(data, columns = ['year', 'state', 'pop'])
+frame['year']
+frame.year
+
+frame.ix[3]
+frame['debt'] = 13
+
+# 嵌套字典
+pop = {
+    'nevada': {2001: 2.4, 2002: 2.9},
+	'nevada': {2003: 3.4, 2004: 3.9},
+    'ohio': {2001: 2.3, 2002: 3.9}
+	}
+frame1 = DataFrame(pop)
+
+# 设置index 和 columns 的name
+frame.index.name = 'year'
+frame.columns.name = 'state'
+
+# 索引对象
+obj = Series(range(3), index = ['a', 'b', 'c'])
+index = obj.index
+index
+index[1:]
+
+index = pd.Index(np.arange(3))
+obj2= Series([1.5, -2.5, 0], index = index)
+obj2.index is index 
