@@ -50,3 +50,48 @@ index[1:]
 index = pd.Index(np.arange(3))
 obj2= Series([1.5, -2.5, 0], index = index)
 obj2.index is index 
+
+# 重新索引
+obj1 = Series([4.5, 7.2, -5.3, 3.6], index = ['d', 'b', 'c', 'a'])
+obj1
+
+obj2 = obj.reindex(['a', 'b', 'c', 'd', 'e'])
+obj2
+
+obj3 = obj.reindex(['a', 'b', 'c', 'd', 'e'], fill_value = 0)
+obj3
+
+# 插值处理
+obj4 = Series(['blue', 'purple', 'yellow'], index = [0, 2, 4])
+obj4 = reindex(range(6), method = 'ffill')
+obj4 = reindex(range(6), method = 'bfill')
+
+frame = DataFrame(np.arange(9).reshape((3, 3)), index = ['a', 'c', 'd'], columns = ['ohio', 'texas', 'nevada'])
+frame
+frame2 = frame.reindex(['a', 'b', 'c', 'd'])
+
+# 丢弃指定轴上的项
+obj = Series(np.arange(5.), index = ['a', 'b', 'c', 'd', 'e'])
+obj1 = obj.drop('c')
+obj1
+
+# axis 赋值为0或1,0为行，1为列
+data = DataFrame(np.arange(16).reshape((4, 4)), index = ['a', 'b', 'c','d'], columns = ['ohio', 'texas', 'nevada', 'newyork'])
+data.drop('texas', axis = 1)
+
+# 在行上索引
+data.ix['colorado', ['two', 'three']]
+data.ix[['colorado', 'utah'], [3, 0, 1]]
+data.ix[2]
+
+# 算数功能和数据对齐
+s1 = Series([7.3, -2.5, 3.4], index = ['a', 'b', 'c'])
+s2 = Series([4.3, -4.5, 4.4], index = ['b', 'd', 'c'])
+s1 + s2
+
+# 对于DateFrame相加会同时发生在行列上
+
+df1.add(df2, fill_value = 0)
+
+df1.reindex(columns = df2.columns, fill_value = 0)
+
