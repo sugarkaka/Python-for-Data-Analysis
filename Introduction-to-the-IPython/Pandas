@@ -95,3 +95,20 @@ df1.add(df2, fill_value = 0)
 
 df1.reindex(columns = df2.columns, fill_value = 0)
 
+frame = DataFrame(np.arange(12).reshape((4, 3)), 
+    columns = list('bde'), index = ['Utah', 'Ohio', 'Taxas', 'Oregon'])
+
+# 函数的应用与映射
+f = lambda x : x.max() - x.min()
+
+frame.apply(f)
+frame.apply(f, axis = 1)
+
+def f(x):
+    return Series([x.max(), x.min(), index = ['max', 'min'])
+frame.apply(f)
+
+format = lambda x: '%.2f' % x
+frame.applymap(format)
+
+frame['e'].map(format)
