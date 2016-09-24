@@ -112,3 +112,66 @@ format = lambda x: '%.2f' % x
 frame.applymap(format)
 
 frame['e'].map(format)
+
+# 排序和排名
+obj = Series(range(4), index = ['d', 'a', 'b', 'c'])
+obj.sort_index()
+obj.order()
+
+frame = DataFrame(np.arange(8).reshape((2, 4)), index = ['three', 'one'], columns = ['d', 'a', 'b', 'c'])
+frame.sort_index
+frame.sort_index(axis = 1)
+frame.sort_index(axis = 1, ascending = False)
+
+obj = Series([7, -5, 7, 4, 2, 0, 4])
+obj.rank
+
+# 利用method 破坏评级关系
+obj.rank(method = 'first')
+obj.rank(ascending = False, method = 'max')
+
+# 带有重复值的轴索引
+obj = Series(range(5), index = ['a', 'a', 'b', 'b', 'c'])
+obj
+
+obj.index.is_unique
+
+frame = DataFrame(np.arange(12).reshape((4, 3)), 
+    columns = list('bde'), index = ['Utah', 'Ohio', 'Taxas', 'Oregon'])
+frame.describe()
+frame.sum()
+frame.sum(axis = 1)
+
+all_data = {}
+for ticker in ['APPL', 'IBM', 'MSFT', 'GOOG']:
+    all_data[ticker] = web.get_data_yahoo(ticker, '1/1/2000', '1/1/2010')
+	
+price = DataFrame({tic: data['Adj Close']
+                    for tic, data in all_data.iteritems()})
+volume = DataFrame({tic: data['Volume']
+                    for tic, data in all_data.iteritems()})
+
+# Series计算相关系数与协方差
+returns.MSFT.corr(returns.IBM)					
+returns.MSFT.cov(returns.IBM)
+
+# DataFrame计算相关系数与协方差
+returns.corr()
+returns.cov()
+
+returns.corrwith(returns.IBM)
+returns.corrwith(volume)
+
+# 唯一值，值计算以及成员资格
+uniques = obj.unique()
+uniques_sort = obj.unique_sort()
+
+obj.value_counts()
+pd.value_counts(obj.values, sort = False)
+
+# 判断成员资格
+mask = obj.isin(['b', 'c'])
+mask 
+obj[mask]
+
+result.apply(pd.value_counts).fillna(0)
