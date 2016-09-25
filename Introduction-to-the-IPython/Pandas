@@ -175,3 +175,12 @@ mask
 obj[mask]
 
 result.apply(pd.value_counts).fillna(0)
+
+# 处理缺失数据
+string_data = Series(['aardvark', 'artichoke', np.nan, 'avocado'])
+string_data
+string_data.isnull()
+
+string_data[0] = None
+string_data.isnull()
+
