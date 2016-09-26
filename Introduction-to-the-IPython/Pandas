@@ -190,10 +190,12 @@ data.dropna()
 data[data.notnull()]
 
 data = DataFrame([[1, 6, 3], [1, NA, NA], [NA, NA, NA], [NA, 6, 4]])
-# 删除全部NA行+列
+# 删除全部为NA的行+列
 cleaned = data.dropna()
-# 删除NA行
+# 删除全部为NA行
 data.dropna(how = 'all')
+#删除有NA行
+data.dropna(how = 'any')
 # 删除NA列
 data.dropna(axis = 1)
 
@@ -203,3 +205,23 @@ df.ix[:4, 2] = NA
 df.ix[:2, 2] = NA
 
 df.dropna(thresh = 3)
+
+# 填充缺失数据
+df.fillna(0)
+# 对现有对象进行更改
+df.fillna(0, inplace = True)
+
+df = DataFrame(np.random.randint(6, 3))
+df.fillna(method = 'ffill')
+df.fillna(method = 'ffill', limit = 2)
+df.fillna(df.mean())
+
+data = Series(np.random.randn(10), 
+    index = [['a', 'a', 'a', 'b', 'b', 'b', 'c', 'c', 'd', 'd'],
+	         [1, 2, 3, 1, 2, 3, 1, 2, 2, 3]])
+
+data[data.values >0]
+data['b' : 'c']
+
+data.unstack()
+data.unstack().stack()
