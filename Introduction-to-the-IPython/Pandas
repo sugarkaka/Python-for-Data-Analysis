@@ -252,4 +252,4 @@ ser = Series(range(3), index = [5, 1, 4])
 ser.iget_value(2)
 
 frame = DataFrame(np.arange(6).reshape((3, 2)), index = [2, 0, 1])
-frame.irow
+frame.irow（0）
