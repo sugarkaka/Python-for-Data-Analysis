@@ -225,3 +225,31 @@ data['b' : 'c']
 
 data.unstack()
 data.unstack().stack()
+
+# 重排分级顺序
+frame.swaplevel('key1', 'key2')
+frame.sortlevel(1)
+frame.swaplevel(0, 1).sortlevel(0)
+
+# 根据级别进行统计
+frame.sum(level = 'key2')
+frame.sum(level = 'color', axis = 1)
+
+frame = DataFrame({
+    'a' : range(7),
+	'b' : range(7, 0, -1),
+	'c' : ['one', 'one', 'one', 'two', 'two', 'two', 'two'],
+	'd' : [0, 1, 2, 0, 1, 2, 3]})
+	
+frame2 = frame.set_index(['c', 'd'])
+frame.set_index(['c', 'd'], drop = False)
+
+# reset_index与set_index 功能相反
+frame2.reset_index()
+
+# 不考虑索引类型的基于位置的索引
+ser = Series(range(3), index = [5, 1, 4])
+ser.iget_value(2)
+
+frame = DataFrame(np.arange(6).reshape((3, 2)), index = [2, 0, 1])
+frame.irow
