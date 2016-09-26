@@ -1,0 +1,26 @@
+pd.read_csv('ch06/ex1.csv')
+pd.read_table('ch06/ex1.csv', sep = ',')
+
+pd.read_csv('ch06/ex1.csv', header = None)
+pd.read_csv('ch06/ex1.csv', names = ['a', 'b', 'c', 'd', 'message')
+
+names = ['a', 'b', 'c', 'd', 'message']
+pd.read_csv('ch06/ex1.csv', names = names, index_col = 'message')
+pd.read_csv('ch06/ex1.csv', names = names, index_col = ['key1', 'key2'])
+
+# 处理数量不定的空格
+result = pd.read_table('ex3.txt', sep = '\s+')
+
+pd.read_csv('ex1.txt', skiprows = [0, 2, 3])
+
+# 读取大文件时
+pd.read_csv('ex1.txt', nrows = 5)
+
+# 计算字母数量
+chunker = pd.read_csv('ex6.csv', chunksize = 1000)
+
+tot = Series([])
+for piece in chunker:
+    tot = tot.add(piece['key'].value_counts(), fill_value = 0)
+
+tot = tot.order(ascending = False)
