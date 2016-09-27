@@ -1,1 +1,20 @@
+df1 = DataFrame({
+    'key': ['b', 'b', 'a', 'c', 'a', 'a', 'b'],
+	'data1': range(7)})
+
+df2 = DataFrame({
+    'key': ['a', 'b', 'd'],
+	'data2': range(3)})
+	
+pd.merge(df1, df2)
+pd.merge(df1, df2, on = 'key')
+pd.merge(df1, df2, how = 'outer')
+
+pd.merge(df1, df2, on = 'key', how = 'left')
+
+# 多个键进行合并
+pd.merge(df1, df2, on = ['key1', 'key2'], how = 'outer')
+
+# 重复列名的处理
+pd.merge(left, right, on = 'key1', suffixes = ('_left', '_right'))
 
