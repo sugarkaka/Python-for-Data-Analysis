@@ -46,3 +46,60 @@ pd.concat([s1, s2], axis = 1, join_axes = [['a', 'b', 'c', 'd']])
 # 创建层次化索引
 result = pd.concat([s1, s2], keys = ['one, 'two', 'three'])
 result = pd.concat([s1, s2], keys = ['one, 'two', 'three'], names = ['upper', 'lower'])
+
+# 合并重叠数据
+np.where(pd.isnull(a), b, a)
+
+b[:-2].combine_first(a:[2:])
+
+# 重塑层次化索引
+
+data = DataFrame(np.arange(6).reshape(2, 3),
+    index = pd.Index(['Ohio', 'Colorado'], name = 'state'),
+	columns = pd.Index(['one', 'two', 'three'], name = 'number'))
+	
+
+data = DataFrame(
+    np.arange(6).reshape(2, 3),
+    index = ['Ohio', 'Colorado'], 
+	columns = ['one', 'two', 'three'])
+data.index.name = 'state'
+data.columns.name = 'number'
+
+data.stack()
+data.stack().unstack()
+
+# 长格式转换为宽格式
+pivoted = ldata.pivot('date', 'item', 'value')
+pivoted.head()
+
+pivoted = ldata.set_index(['date', 'item']).unstack('item')
+
+# 移除重复数据
+data = DataFrame({
+    'k1': ['one'] *3 + ['two'] *4,
+	'k2': [1, 1, 2, 3, 3, 4, 4]})
+	
+data.drop_duplicates()
+data.drop_duplicates(['k1'])
+
+# 保留最后一个值
+data.drop_duplicates(['k1'], take_last = True)
+
+# 利用函数或映射进行数据转换
+data = DataFrame({
+    'food': ['bacon', 'pulled pork', 'bacon', 'Pastrami', 'corned beef',
+	        'Bacon', 'pastrami', 'honey ham', 'nova lox']
+	'ounces': [4, 3, 12, 6, 7, 8, 3, 5, 6]})	
+meat_to_animal = {
+    'bacon': 'pig',
+	'pulled pork': 'pig',
+	'pastrami': 'cow',
+	'corned beef': 'cow',
+	'honey ham': 'pig', 
+	'nova lox': 'salmon'
+	}
+
+data['animal'] = data['food'].map(str.lower).map(meat_to_animal)	
+	
+data['food'].map(lambda x: meat_to_animal[x.lower()])
