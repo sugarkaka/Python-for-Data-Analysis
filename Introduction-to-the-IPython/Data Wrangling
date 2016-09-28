@@ -18,3 +18,31 @@ pd.merge(df1, df2, on = ['key1', 'key2'], how = 'outer')
 # 重复列名的处理
 pd.merge(left, right, on = 'key1', suffixes = ('_left', '_right'))
 
+# 连接键位于索引中
+left1 = DataFrame({
+    'key1': ['a', 'b', 'a', 'a', 'b', 'c'],
+	'value': range(6)})
+
+right1 = DataFrame({
+    'group_val': [3.5, 7]},
+	index = ['a', 'b'])
+
+pd.merge(left1, right1, left_on = 'key', right_index = True)
+
+pd.merge(left1, right1, left_on = 'key', right_index = True, how = 'outer')
+
+left1.join(right1, on = 'key', how = 'outer')
+
+
+# concat 合并
+s1 = Series([0, 1], index = ['a', 'b'])
+s2 = Series([2, 3, 4], index = ['c', 'd', 'e'])
+s3 = Series([5, 6], index = ['f', 'g'])
+pd.concat([s1, s2, s3])
+pd.concat([s1, s2], axis = 1)
+pd.concat([s1, s2], axis = 1, join = 'inner')
+pd.concat([s1, s2], axis = 1, join_axes = [['a', 'b', 'c', 'd']])
+
+# 创建层次化索引
+result = pd.concat([s1, s2], keys = ['one, 'two', 'three'])
+result = pd.concat([s1, s2], keys = ['one, 'two', 'three'], names = ['upper', 'lower'])
