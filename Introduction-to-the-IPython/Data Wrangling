@@ -103,3 +103,4 @@ meat_to_animal = {
 data['animal'] = data['food'].map(str.lower).map(meat_to_animal)	
 	
 data['food'].map(lambda x: meat_to_animal[x.lower()])
+# 今天去看小宝宝
