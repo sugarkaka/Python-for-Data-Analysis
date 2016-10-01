@@ -105,3 +105,30 @@ data['animal'] = data['food'].map(str.lower).map(meat_to_animal)
 data['food'].map(lambda x: meat_to_animal[x.lower()])
 # 今天去看小宝宝
 # 跷脚牛肉休假
+# 替换值
+data = Series([1, -999, 2, -999, -1000, 3])
+data.replace(-999, np.nan)
+data.replace([-999, 2), np.nan)
+data.replace([-999, 2], [np.nan, 1])
+data.replace({-999: np.nan, -1000: 0 })
+
+
+# 重命名轴索引
+data = DataFrame(np.arange(12).reshape(3, 4), index = [‘ohio’, ‘colorado’, ‘newyork’], columns = [’one’, ’two’, ‘three’, ‘four’])
+
+data.index.map(str.upper)
+data.index  = data.index.map(str.upper)
+
+data.rename(index = str.title, columns = str.upper)
+
+# 离散化与面元划分
+ages = [20, 22, 27, 25, 21, 24, 37, 31, 61, 45, 41, 32]
+bins = [18, 25, 35, 60, 100]
+cats = pd.cut(ages, bins)
+cat.labels
+cat.levels
+
+pd.value_counts(cats)
+
+group_names = [‘one’, ‘two’, ‘three’]
+pd.cuts(ages, bins, levels = group_names)
