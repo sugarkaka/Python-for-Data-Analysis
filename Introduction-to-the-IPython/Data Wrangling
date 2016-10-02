@@ -132,3 +132,4 @@ pd.value_counts(cats)
 
 group_names = [‘one’, ‘two’, ‘three’]
 pd.cuts(ages, bins, levels = group_names)
+# 今天跟媳妇看父母爱情
