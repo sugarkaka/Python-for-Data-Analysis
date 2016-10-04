@@ -182,3 +182,11 @@ val.count(,)
 val.replace(‘,’, ‘::’)
 val.find(‘:’)
 val.index(‘,’)
+
+# 正则表达式
+import re
+text = ‘foo bar  \t bad  \t qux’
+re.split(’\s+’, text)
+
+regex  = re.compile(’\s+’)
+regex.split(text)
