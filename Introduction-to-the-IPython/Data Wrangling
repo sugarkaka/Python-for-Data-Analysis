@@ -154,3 +154,31 @@ df.take(sample)
 bag = np.array([5, 7, -1, 6, 4])
 sampler = np.random.randint(0, len(bag), size = 10)
 draws = bag.take(sampler)
+
+# 计算指标或者哑变量
+df = DataFrame({
+    ‘key’: [‘b’, ‘b’, ‘a’, ‘c’, ‘a’, ‘b’],
+    ‘data1’: range(6)})
+pd.get_dummies(df[‘key’])
+
+dummies = pd.get_dummies(df[‘key’], prefix = ‘key’)
+df_with_dummy = df[[‘data1’]].join(dummies)
+
+values = np.random.rand(10)
+bins = [0, 0.2, 0.4, 0.6, 0.8, 1]
+pd.get_dummies(pd.cut(values, bins))
+
+# 字符串对象方法
+val =‘a,b, guido’
+val.split(‘,’)
+
+# 去掉空白符
+piece = [x.strip() for x in val.split(‘,’)]
+
+# 连接字符串
+‘ :: ‘.join(piece)
+
+val.count(,)
+val.replace(‘,’, ‘::’)
+val.find(‘:’)
+val.index(‘,’)
