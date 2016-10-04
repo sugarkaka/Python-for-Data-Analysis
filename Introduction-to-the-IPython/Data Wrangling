@@ -132,5 +132,25 @@ pd.value_counts(cats)
 
 group_names = [‘one’, ‘two’, ‘three’]
 pd.cuts(ages, bins, levels = group_names)
-# 今天跟媳妇看父母爱情
-# yanzhi
+
+data = np.random.randn(1000)
+cats = pd.qcut(data, 4)
+pd.value_counts(cats)
+
+# 检测和过滤异常值
+data = DataFrame(np.random.randn(1000, 4）
+data.describe()
+
+data[np.abs(data) > 3).any(1)]
+
+data[np.abs(data) > 3)] = np.sign(data) * 3
+
+# 排列与随机抽样
+df = DataFrame(np.arange( 5 * 4).reshape(5, 4)
+
+sampler = np.random.permutation(5)
+df.take(sample)
+
+bag = np.array([5, 7, -1, 6, 4])
+sampler = np.random.randint(0, len(bag), size = 10)
+draws = bag.take(sampler)
