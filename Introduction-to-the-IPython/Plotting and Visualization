@@ -5,3 +5,4 @@ ax1 = fig.add_subplot(2, 2, 1)
 
 from bumpy.random import randn
 plt.plot(randn(50).cumsum(), ‘k - -‘)
+# 复习
