@@ -8,3 +8,4 @@ plt.plot(randn(50).cumsum(), ‘k - -‘)
 # 复习
 # 变脸
 # 宝宝
+# LIDAYE
