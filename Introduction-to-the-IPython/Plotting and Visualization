@@ -1,11 +1,18 @@
-# 绘图
-import matplotlib.pyplot as pet 
+import matplotlib.pyplot as plt
 fig = plt.figure()
 ax1 = fig.add_subplot(2, 2, 1)
+plt.plot([1.5, 3, -2, 1.6])
 
-from bumpy.random import randn
-plt.plot(randn(50).cumsum(), ‘k - -‘)
-# 复习
-# 变脸
-# 宝宝
-# LIDAYE
+from numpy.random import randn
+plt.plot(randn(50).cumsum(), 'k--')
+
+ax2.scatter(np.arange(30), np.arange(30)*randn(30))
+_ = ax1.hist(randn(100), bins = 20, color = 'k', alpha = 0.3)
+
+fig, axe = plt.subplots(2, 3)
+
+fig, axes = plt.subplots(2, 2, sharex = True, sharey = True)
+for i in range(2):
+    for j in range(2):
+	    axes[i, j].hist(randn(100), bins = 50, color = 'k', alpha = 0.3)
+plt.subplots_adjust(wspace = 0, hspace = 0)
