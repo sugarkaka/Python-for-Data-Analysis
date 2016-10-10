@@ -16,3 +16,8 @@ for i in range(2):
     for j in range(2):
 	    axes[i, j].hist(randn(100), bins = 50, color = 'k', alpha = 0.3)
 plt.subplots_adjust(wspace = 0, hspace = 0)
+
+ticks = ax.set_xticks([0, 25, 75, 100])
+labels = ax.set_xticklabels(['one', 'two', 'three', 'four'], rotation = 30, fontsize = 'small')
+ax.set_title('my first matplotlib')
+ax.set_xlabel('stages')
