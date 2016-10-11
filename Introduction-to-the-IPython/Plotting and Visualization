@@ -21,3 +21,27 @@ ticks = ax.set_xticks([0, 25, 75, 100])
 labels = ax.set_xticklabels(['one', 'two', 'three', 'four'], rotation = 30, fontsize = 'small')
 ax.set_title('my first matplotlib')
 ax.set_xlabel('stages')
+
+from datetime import datetime
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+data = pd.read_csv('spx.csv', indel_col = 0, parse_dates = True)
+spx = data['SPX']
+
+spx.plot(ax = ax, style = 'k-')
+
+crisis_data = [
+    (datetime(2007, 10, 11), 'Peak of bull market'),
+	(datetime(2008, 3, 12), 'Bear Stearns Fails'),
+	(datetime(2008, 9, 15), 'lehman Bankruptcy')
+	]
+
+for date, label in crisis_data:
+    ax.annotate(label, xy = (date, spx.asof(date)+ 50),
+	    xytext = (date, spx.asof(date) + 200),
+		arrowprops = dict(facecolor = 'black'),
+		hprizontalalignment = 'left', verticalalignment = 'top')
+		
+ax.set_xlim(['1/1/2007', '1/1/2011'])
+ax.set_ylim([600, 1800])
+ax.set_title('Important dates in 2008-2009 financial crisis')
