@@ -7,3 +7,30 @@ grouped = df['data1'].groupby(df['key1'])
 grouped.mean()
 
 means = df['data1'].groupby([df['key1'], df['key2']]).mean()
+df.groupby('key1')['data1']
+df['data1'].groupby(df['key1'])
+
+# 为DF添加平均值列
+k1_means = df.groupby('key1').mean().add_prefix('mean_')
+k1_means
+pd.merge(df, k1_means, left_on = 'key1', right_index = True)
+
+key = ['one', 'two', 'one', 'two', 'one']
+df.groupby(key).mean()
+df.groupby(key).transform(np.mean)
+
+# 删掉平均值列
+def demean(arr):
+    return arr - arr.mean()
+demeaned = df.groupby(key).transform(demean)
+
+frame = DataFrame({
+    'data1': np.random.randn(1000),
+	'data2': np.random.randn(1000)})
+factor = pd.cut(frame.data1, 4)
+def get_stats(group):
+    return {
+	'min': group.min(),'max': group.max(),
+	'count': group.count(), 'mean': group.mean()}
+grouped = frame.data2.groupby(factor)
+grouped.apply(get_stats).unstack
