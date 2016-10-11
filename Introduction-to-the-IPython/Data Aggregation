@@ -34,3 +34,16 @@ def get_stats(group):
 	'count': group.count(), 'mean': group.mean()}
 grouped = frame.data2.groupby(factor)
 grouped.apply(get_stats).unstack
+
+# 使用平均数填充缺失值
+s = Series(np.random.randn(6))
+s[::2] = np.nan
+s.fillna(s.mean())
+
+data.groupby(group_key).mean()
+fill_mean = lambda g: g.fillna(g.mean())
+data.groupby(group_key).apply(fill_mean)
+
+fill_values = {'east': 0.5, 'west': -1}
+fill_func = lambda g: g.fillna(fill_values[g.name])
+data.groupby(group_key).apply(fill_func)
