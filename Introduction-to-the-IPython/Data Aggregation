@@ -102,4 +102,3 @@ tips.pivot_table(rows = ['sex', 'smoker'])
 tips.pivot_table(['tip_pct', 'size'], rows = ['sex', 'day'], cols ='smoker')
 
 pd.crosstab(data.gender, data.handedness, margins = True)
-aa
